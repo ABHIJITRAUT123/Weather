@@ -51,6 +51,11 @@ const CloseButton = styled.span`
 function App() {
   const [city, updateCity] = useState();
   const [weather, updateWeather] = useState();
+  const current = new Date();
+  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  var hours = new Date().getHours(); 
+  var min = new Date().getMinutes();
+  const time = `${hours}:${min}`;
   const fetchWeather = async (e) => {
     e.preventDefault();
     const response = await Axios.get(
@@ -61,6 +66,8 @@ function App() {
   return (
     <Container>
       <AppLabel>React Weather App</AppLabel>
+      <h3>Date:- {date}</h3>
+      <h3>Time:- {time}</h3>
       {city && weather ? (
         <WeatherComponent weather={weather} city={city} />
       ) : (
